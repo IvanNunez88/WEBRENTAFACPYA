@@ -14,8 +14,10 @@ import { TableDemo } from './tabledemo';
 import { OverlayDemo } from './overlaydemo';
 import { TreeDemo } from './treedemo';
 import { MenuDemo } from './menudemo';
+import { VehiculoComponent } from './Vehiculo/Vehiculo.component';
 
 export default [
+    { path: 'vehiculo', data: { breadcrumb: 'Vehiculo' }, component: VehiculoComponent },
     { path: 'button', data: { breadcrumb: 'Button' }, component: ButtonDemo },
     { path: 'charts', data: { breadcrumb: 'Charts' }, component: ChartDemo },
     { path: 'file', data: { breadcrumb: 'File' }, component: FileDemo },

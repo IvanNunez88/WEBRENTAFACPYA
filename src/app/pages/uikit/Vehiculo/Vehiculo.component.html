@@ -1,0 +1,77 @@
+<p-confirmdialog />
+<p-toast />
+
+<div class="card">
+    <div class="font-semibold text-xl mb-4">Vehículo</div>
+
+    <p-toolbar styleClass="mb-6">
+        <ng-template #start>
+            <p-button label="Nuevo" (onClick)="registrarVehiculo()" icon="pi pi-plus" />
+        </ng-template>
+
+        <ng-template #end>
+            <!-- <p-button label="Export" icon="pi pi-upload" severity="secondary" /> -->
+        </ng-template>
+    </p-toolbar>
+
+    <p-table
+        #dt
+        [value]="listaReporteVehiculo"
+        [loading]="mostrarLoading"
+        [rows]="5"
+        [globalFilterFields]="columnasTabla"
+        [paginator]="true"
+        class="table-auto w-full"
+        [rowHover]="true"
+        [rowsPerPageOptions]="[5, 10, 20]"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [showCurrentPageReport]="true"
+    >
+        <ng-template #caption>
+            <div class="flex items-center justify-between">
+                <h5 class="m-0"></h5>
+                <p-iconfield>
+                    <p-inputicon styleClass="pi pi-search" />
+                    <input pInputText type="text" style="width: 350px" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar" />
+                </p-iconfield>
+            </div>
+        </ng-template>
+        <!--  -->
+
+        <ng-template #header>
+            <tr>
+                <th pSortableColumn="vehiculo" class="px-2 py-2 leading-snug">
+                    <span class="flex items-center"> Vehículo<p-sortIcon field="vehiculo" /> </span>
+                </th>
+
+                <th pSortableColumn="tamano" class="px-2 py-2 leading-snug">
+                    <span class="flex items-center"> Tamaño <p-sortIcon field="tamano" /> </span>
+                </th>
+                <th pSortableColumn="capacidad" class="px-2 py-2 leading-snug">
+                    <span class="flex items-center"> Capacidad <p-sortIcon field="capacidad" /> </span>
+                </th>
+                <th pSortableColumn="pRenta" class="px-2 py-2 leading-snug">
+                    <span class="flex items-center"> Precio Renta <p-sortIcon field="pRenta" /> </span>
+                </th>
+                <th pSortableColumn="estatus" class="px-2 py-2 leading-snug">
+                    <span class="flex items-center"> Estatus <p-sortIcon field="estatus" /> </span>
+                </th>
+                <th style="min-width: 9.5rem"></th>
+            </tr>
+        </ng-template>
+        <!--  -->
+        <ng-template #body let-vehiculo>
+            <tr>
+                <td class="px-2 py-2">{{ vehiculo.vehiculo }}</td>
+                <td class="px-2 py-2">{{ vehiculo.tamano }}</td>
+                <td class="px-2 py-2">{{ vehiculo.capacidad }}</td>
+                <td class="px-2 py-2">{{ vehiculo.pRenta }}</td>
+                <td><p-tag [value]="vehiculo.estatus" [severity]="vehiculo.isActivo ? 'success' : 'danger'"></p-tag></td>
+                <td>
+                    <p-button icon="pi pi-pencil" severity="info" pTooltip="Editar" [rounded]="true" raised rounded />
+                    <!-- <p-button icon="pi pi-trash" severity="danger" [rounded]="true" raised rounded pTooltip="Borrar" tooltipPosition="bottom" /> -->
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
