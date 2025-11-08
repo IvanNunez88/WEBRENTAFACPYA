@@ -1,0 +1,35 @@
+<form [formGroup]="frmVehiculo">
+    <div class="flex flex-wrap items-start gap-3 mt-2">
+        <!--  -->
+        <p-floatlabel variant="on">
+            <input pInputText style="width: 150px" formControlName="vehiculo" autocomplete="off" />
+            <label>Descripción</label>
+        </p-floatlabel>
+        <!--  -->
+        <p-floatlabel variant="on">
+            <p-select appendTo="body" [style]="{ width: '180px' }" [options]="listaCatTamano" optionLabel="descrip" optionValue="idTamaño" formControlName="idTamano" [filter]="true" />
+            <label>Tamaño</label>
+        </p-floatlabel>
+        <!--  -->
+
+        <p-floatlabel variant="on">
+            <p-inputnumber [inputStyle]="{ width: '80px' }" formControlName="capacidad" />
+            <label>Capacidad</label>
+        </p-floatlabel>
+
+        <!--  -->
+        <p-floatlabel variant="on">
+            <p-inputnumber [inputStyle]="{ width: '120px' }" mode="currency" currency="MXN" locale="es-MX" formControlName="pRenta" />
+            <label>Precio Renta</label>
+        </p-floatlabel>
+        <!--  -->
+        <div *ngIf="mostrarSwitch" style="margin: 0px 0px 5px 5px">
+            <p-toggleswitch formControlName="isEstatus" />
+            <label class="leading-none ml-2 text-xl align-baseline">Estatus</label>
+        </div>
+
+        <div [ngStyle]="{ margin: '0px 0px 0px ' + marginLeft }">
+            <p-button type="button" label="{{ boton }}" [loading]="mostrarLoading" [disabled]="frmVehiculo.invalid" (onClick)="guardar_editarVehiculo()" />
+        </div>
+    </div>
+</form>

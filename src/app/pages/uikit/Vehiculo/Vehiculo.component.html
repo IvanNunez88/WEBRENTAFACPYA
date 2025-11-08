@@ -40,20 +40,20 @@
 
         <ng-template #header>
             <tr>
-                <th pSortableColumn="vehiculo" class="px-2 py-2 leading-snug">
+                <th pSortableColumn="vehiculo">
                     <span class="flex items-center"> Vehículo<p-sortIcon field="vehiculo" /> </span>
                 </th>
 
-                <th pSortableColumn="tamano" class="px-2 py-2 leading-snug">
+                <th pSortableColumn="tamano">
                     <span class="flex items-center"> Tamaño <p-sortIcon field="tamano" /> </span>
                 </th>
-                <th pSortableColumn="capacidad" class="px-2 py-2 leading-snug">
+                <th pSortableColumn="capacidad">
                     <span class="flex items-center"> Capacidad <p-sortIcon field="capacidad" /> </span>
                 </th>
-                <th pSortableColumn="pRenta" class="px-2 py-2 leading-snug">
+                <th pSortableColumn="pRenta">
                     <span class="flex items-center"> Precio Renta <p-sortIcon field="pRenta" /> </span>
                 </th>
-                <th pSortableColumn="estatus" class="px-2 py-2 leading-snug">
+                <th pSortableColumn="estatus">
                     <span class="flex items-center"> Estatus <p-sortIcon field="estatus" /> </span>
                 </th>
                 <th style="min-width: 9.5rem"></th>
@@ -62,14 +62,13 @@
         <!--  -->
         <ng-template #body let-vehiculo>
             <tr>
-                <td class="px-2 py-2">{{ vehiculo.vehiculo }}</td>
-                <td class="px-2 py-2">{{ vehiculo.tamano }}</td>
-                <td class="px-2 py-2">{{ vehiculo.capacidad }}</td>
-                <td class="px-2 py-2">{{ vehiculo.pRenta }}</td>
+                <td>{{ vehiculo.vehiculo }}</td>
+                <td>{{ vehiculo.tamano }}</td>
+                <td>{{ vehiculo.capacidad }}</td>
+                <td>{{ vehiculo.pRenta | currency: 'MXN' : 'symbol-narrow' : '1.2-2' : 'es-MX' }}</td>
                 <td><p-tag [value]="vehiculo.estatus" [severity]="vehiculo.isActivo ? 'success' : 'danger'"></p-tag></td>
                 <td>
-                    <p-button icon="pi pi-pencil" severity="info" pTooltip="Editar" [rounded]="true" raised rounded />
-                    <!-- <p-button icon="pi pi-trash" severity="danger" [rounded]="true" raised rounded pTooltip="Borrar" tooltipPosition="bottom" /> -->
+                    <p-button icon="pi pi-pencil" severity="info" pTooltip="Editar" [rounded]="true" (onClick)="editarVehiculo(vehiculo)" raised rounded />
                 </td>
             </tr>
         </ng-template>
